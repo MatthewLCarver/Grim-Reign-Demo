@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1bcf10ec-de99-4c04-b694-f4da41d6eee1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Materials/CalibrationFloorDiffuse.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Materials/CalibrationFloorDiffuse.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Models/Beta.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Models/Beta.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Models/Beta@t_pose.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Models/Beta@t_pose.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Models/Beta@walking.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Models/Beta@walking.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Scripts/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/Scripts/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/_Scenes/00 Starter Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PhysicsSimulation/Assets/_Scenes/00 Starter Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/DynamicsManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PhysicsSimulation/ProjectSettings/TimelineSettings.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/SwingingAxe_Z.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="2MABw5SlVrjMNgRM3wI7wyiDbf2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Carver\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Carver\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Carver\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1bcf10ec-de99-4c04-b694-f4da41d6eee1" name="Changes" comment="" />
+      <created>1677200742757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677200742757</updated>
+      <workItem from="1677200745199" duration="45000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
