@@ -9,10 +9,18 @@ namespace Interactables.Items
 		public string itemName { get; set; }
 		public bool isCollected { get; set; }
 		public GameObject usableObject { get; set; }
+
+		private void OnEnable()
+		{
+			GameManager.GetPlayer().OnItemCollected += UseItem;
+		}
+
 		public virtual void CollectItem()
 		{
 			GameManager.GetPlayer().AddItemToInventory(this);
 		}
+
+		protected abstract void UseItem(IItem _item);
 
 		public void UseItem()
 		{

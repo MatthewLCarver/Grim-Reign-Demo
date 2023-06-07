@@ -27,13 +27,11 @@ public class Respawner : MonoBehaviour
     
     public Transform rootTransform;
     public List<TransformData> transformDataArray;
-    private CharacterMover characterMover;
-    
-    //public TMP_Text xText;
+    private PlayerInputHandler playerInputHandler;
 
     private void Awake()
     {
-        characterMover = GetComponent<CharacterMover>();
+        playerInputHandler = GetComponent<PlayerInputHandler>();
     }
 
     // Start is called before the first frame update
@@ -56,12 +54,14 @@ public class Respawner : MonoBehaviour
     /// </summary>
     private void RespawnCharacter()
     {
-        characterMover.CharacterRagdoll();
+        playerInputHandler.CharacterRagdoll();
         transform.position = respawnPosition;
         transform.rotation = respawnRotation;
         Respawn(rootTransform);
-        characterMover.CharacterRespawn();
+        playerInputHandler.CharacterRespawn();
         SaveRespawnTransform(rootTransform);
+        /*Quaternion temp = Quaternion.Euler(70, 0, 0);
+        GetComponent<Player>().GetWeaponSocket().transform.rotation = temp;*/
     }
 
     /// <summary>

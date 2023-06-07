@@ -168,9 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineBrain: {fileID: 6025725782149368436}
-  ForwardLookAt: {fileID: 0}
-  PlayerTransform: {fileID: 4689609222804950972, guid: 03d1e50a597fdf14880f14a2970fe5a1,
-    type: 3}
   speed: 5
   minLookDistance: 0
   maxLookDistance: 10
@@ -236,8 +233,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0.25
+  m_VerticalDamping: 0.25
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0

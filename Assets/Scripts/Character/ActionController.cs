@@ -6,12 +6,12 @@ public class ActionController : MonoBehaviour
 {
     Camera mainCamera;
     private InteractableType iType;
-    private CharacterMover cm;
+    private PlayerInputHandler cm;
     
     private void Awake()
     {
         mainCamera = Camera.main;
-        cm = GetComponent<CharacterMover>();
+        cm = GetComponent<PlayerInputHandler>();
     }
 
     /// <summary>

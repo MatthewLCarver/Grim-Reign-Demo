@@ -29,13 +29,13 @@ public class RagdollHit : MonoBehaviour
     {
 
         // It's hitting everything lol
-        CharacterMover characterMover = collider.GetComponentInParent<CharacterMover>();
+        PlayerInputHandler playerInputHandler = collider.GetComponentInParent<PlayerInputHandler>();
 
-        if(characterMover != null &&
-           characterMover.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(playerInputHandler != null &&
+           playerInputHandler.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            characterMover.GetComponent<CharacterController>().enabled = false;
-            characterMover.GetComponent<Ragdoll>().ragdollOn = true;
+            playerInputHandler.GetComponent<CharacterController>().enabled = false;
+            playerInputHandler.GetComponent<Ragdoll>().ragdollOn = true;
         }
     }
 

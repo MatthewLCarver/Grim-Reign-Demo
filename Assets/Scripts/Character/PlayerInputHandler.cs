@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 
 using TMPro;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -13,7 +13,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(CharacterController))]
-public class CharacterMover : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviour
 {
 
     public float movementSpeed = 5f;
@@ -32,6 +32,7 @@ public class CharacterMover : MonoBehaviour
     public bool isDiving;
     public bool isPushing;
     public bool isCollecting;
+    public bool isAttacking;
 
     private Camera cam;
 
@@ -43,9 +44,11 @@ public class CharacterMover : MonoBehaviour
     private static readonly int Dive = Animator.StringToHash("Dive");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
     private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
-    private static readonly int collecting = Animator.StringToHash("IsCollecting");
-    private static readonly int pushing = Animator.StringToHash("IsPushing");
-    private static readonly int isLeft = Animator.StringToHash("IsLeft");
+    private static readonly int Collecting = Animator.StringToHash("IsCollecting");
+    private static readonly int Pushing = Animator.StringToHash("IsPushing");
+    private static readonly int IsLeft = Animator.StringToHash("IsLeft");
+    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int IsArmed = Animator.StringToHash("IsArmed");
 
     void Awake()
     {
@@ -85,18 +88,13 @@ public class CharacterMover : MonoBehaviour
     /// </summary>
     private void ProcessActionAnimations()
     {
-        if (isPushing || isCollecting)
+        if (isPushing || isCollecting || isAttacking)
         {
             SetAnimationActiveLayer(anim, 1, 1, Time.fixedDeltaTime, 10);
-            //SetAnimationActiveLayer(anim, 2, 1, Time.fixedDeltaTime, 10);
-            //m_virtualCamera.Priority = 11;
         }
         else
         {
-            //CasualMovement(Time.fixedDeltaTime);
             SetAnimationActiveLayer(anim, 1, 0, Time.fixedDeltaTime, 10);
-            //SetAnimationActiveLayer(anim, 2, 0, Time.fixedDeltaTime, 10);
-            //m_virtualCamera.Priority = 9;
         }
     }
 
@@ -113,10 +111,15 @@ public class CharacterMover : MonoBehaviour
         
         Vector3 delta = (moveInput.x * camRight + moveInput.y * camForward) * movementSpeed;
 
-        if (isGrounded || moveInput.x != 0 || moveInput.y != 0)
+        if (isGrounded || moveInput.x != 0 || moveInput.y != 0 || !isAttacking)
         {
             velocity.x = delta.x;
             velocity.z = delta.z;
+        }
+        else
+        {
+            moveInput = Vector2.zero;
+            velocity = Vector3.zero;
         }
 
         // calculate jump acceleration required to reach jump height
@@ -139,12 +142,13 @@ public class CharacterMover : MonoBehaviour
                 velocity.y = 0;
             }
         }
-
-
+        
         // apply gravity after zeroing velocity so we register as grounded still
         velocity += Physics.gravity * Time.fixedDeltaTime;
 
-        cc.Move(velocity * Time.deltaTime);
+        if(cc.enabled && !isAttacking)
+            cc.Move(velocity * Time.deltaTime);
+        
         isGrounded = cc.isGrounded;
         anim.SetBool(IsGrounded, isGrounded);
     }
@@ -184,9 +188,12 @@ public class CharacterMover : MonoBehaviour
     /// <param name="_context"></param>
     public void OnMove(InputAction.CallbackContext _context)
     {
-        if (isDiving || isPushing || isCollecting)
+        if (isDiving || isPushing || isCollecting || isAttacking)
+        {
+            moveInput = Vector2.zero;
             return;
-        
+        }
+
         if(_context.started || _context.performed)
             moveInput = _context.ReadValue<Vector2>();
         else if(_context.canceled)
@@ -229,7 +236,7 @@ public class CharacterMover : MonoBehaviour
     }
     
     /// <summary>
-    /// Called through the Player Input component event and thecks the input context and activates the player's dive
+    /// Called through the Player Input component event and checks the input context and activates the player's dive
     /// boolean and creates the dive coroutine 
     /// </summary>
     /// <param name="_context"></param>
@@ -246,12 +253,24 @@ public class CharacterMover : MonoBehaviour
         }
     }
     
+    public void OnFire(InputAction.CallbackContext _context)
+    {
+        if (isPushing || isCollecting || !anim.GetBool(IsArmed))
+            return;
+        
+        if (_context.started)
+        {
+            anim.SetTrigger(Attack);
+        }
+    }
+    
     
     /// <summary>
     /// Will set the appropriate floats in the Animator to control animations for movement
     /// </summary>
     private void SetMovementAnimation()
     {
+        if (isAttacking) return;
         // set the animator's movement values
         anim.SetFloat(Horizontal, moveInput.x, 0.1f, Time.deltaTime);
         anim.SetFloat(Vertical, moveInput.y, 0.1f, Time.deltaTime);
@@ -313,29 +332,39 @@ public class CharacterMover : MonoBehaviour
         {
             case InteractableType.Collect:
                 isCollecting = true;
-                anim.SetBool(isLeft, false);
-                anim.SetBool(collecting, isCollecting);
+                anim.SetBool(IsLeft, false);
+                anim.SetBool(Collecting, isCollecting);
                 break;
             
             case InteractableType.CollectLeft:
                 isCollecting = true;
-                anim.SetBool(isLeft, true);
-                anim.SetBool(collecting, isCollecting);
+                anim.SetBool(IsLeft, true);
+                anim.SetBool(Collecting, isCollecting);
                 break;
             
             case InteractableType.Push:
                 isPushing = true;
-                anim.SetBool(pushing, isPushing);
+                anim.SetBool(Pushing, isPushing);
                 break;
         }
     }
 
+    public Animator GetAnimator()
+    {
+        return anim;
+    }
+
+    public void ToggleAttacking()
+    {
+        isAttacking = !isAttacking;
+    }
+    
     public void ResetAnimationLayerBooleans()
     {
         isCollecting = false;
         isPushing = false;
         
-        anim.SetBool(collecting, isCollecting);
-        anim.SetBool(pushing, isPushing);
+        anim.SetBool(Collecting, isCollecting);
+        anim.SetBool(Pushing, isPushing);
     }
 }

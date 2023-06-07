@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 using UnityEngine;
 
@@ -19,6 +20,20 @@ namespace Interactables.Items
 		{
 			base.CollectItem();
 			StartCoroutine(MoveToPlayerHandSocket());
+		}
+
+		protected override void UseItem(IItem _item)
+		{
+			//throw new NotImplementedException();
+		}
+
+		private void FixedUpdate()
+		{
+			if (transform.parent == playerHandSocket)
+			{
+				transform.localPosition = Vector3.zero;
+				transform.localRotation = Quaternion.identity;
+			}
 		}
 
 		private IEnumerator MoveToPlayerHandSocket()
